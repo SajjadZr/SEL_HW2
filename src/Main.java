@@ -1,11 +1,11 @@
 import edu.sharif.selab.models.EmailMessage;
 import edu.sharif.selab.models.Message;
 import edu.sharif.selab.models.SmsMessage;
-import edu.sharif.selab.models.TelegramMessage; // افزودن ایمپورت جدید
+import edu.sharif.selab.models.TelegramMessage;
 import edu.sharif.selab.services.EmailMessageService;
 import edu.sharif.selab.services.MessageService;
 import edu.sharif.selab.services.SmsMessageService;
-import edu.sharif.selab.services.TelegramMessageService; // افزودن ایمپورت جدید
+import edu.sharif.selab.services.TelegramMessageService;
 
 import java.util.Scanner;
 
@@ -21,14 +21,13 @@ public class Main {
             String target;
             String content;
 
-            // 1. افزودن گزینه تلگرام به منو
             System.out.println("In order to send Sms message enter 1");
             System.out.println("In order to send Email message enter 2");
-            System.out.println("In order to send Telegram message enter 3"); // گزینه جدید
+            System.out.println("In order to send Telegram message enter 3");
             System.out.println("In order to Exit, Enter 0");
 
             userAnswer = scanner.nextInt();
-            scanner.nextLine(); // مصرف کردن newline باقی‌مانده
+            scanner.nextLine();
 
             if (userAnswer == 0) {
                 break;
@@ -44,7 +43,7 @@ public class Main {
                     target = scanner.next();
                     smsMessage.setTargetPhoneNumber(target);
                     System.out.println("Write Your Message: ");
-                    scanner.nextLine(); // مصرف کردن newline
+                    scanner.nextLine(); 
                     content = scanner.nextLine();
                     smsMessage.setContent(content);
                     message = smsMessage;
@@ -58,12 +57,12 @@ public class Main {
                     target = scanner.next();
                     emailMessage.setTargetEmailAddress(target);
                     System.out.println("Write Your Message: ");
-                    scanner.nextLine(); // مصرف کردن newline
+                    scanner.nextLine(); 
                     content = scanner.nextLine();
                     emailMessage.setContent(content);
                     message = emailMessage;
                     break;
-                // 2. افزودن case برای تلگرام
+                
                 case 3:
                     TelegramMessage telegramMessage = new TelegramMessage();
                     System.out.print("Enter source ID/phone: ");
@@ -73,17 +72,17 @@ public class Main {
                     target = scanner.next();
                     telegramMessage.setTargetId(target);
                     System.out.println("Write Your Message: ");
-                    scanner.nextLine(); // مصرف کردن newline
+                    scanner.nextLine(); 
                     content = scanner.nextLine();
                     telegramMessage.setContent(content);
                     message = telegramMessage;
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
-                    continue; // ادامه به حلقه بعدی
+                    continue; 
             }
 
-            // 3. افزودن منطق برای فراخوانی سرویس تلگرام
+           
             try {
                 if (message instanceof SmsMessage) {
                     SmsMessageService smsService = new SmsMessageService();
